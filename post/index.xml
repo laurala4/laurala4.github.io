@@ -21,6 +21,15 @@
     </item>
     
     <item>
+      <title>Second post</title>
+      <link>/2019/02/12/second-post/</link>
+      <pubDate>Tue, 12 Feb 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/2019/02/12/second-post/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>A Plain Markdown Post</title>
       <link>/2016/12/30/a-plain-markdown-post/</link>
       <pubDate>Fri, 30 Dec 2016 21:49:57 -0700</pubDate>
