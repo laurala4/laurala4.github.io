@@ -62,7 +62,7 @@
 
   <article class="article">
     
-    <span class="article-duration">2 min read</span>
+    <span class="article-duration">3 min read</span>
     
 
     <h1 class="article-title">Exploring my Data</h1>
@@ -79,19 +79,20 @@
 df2&lt;-read_sav(&quot;~/Desktop/Lizz/Spring19/CSCI498/May10Economy/Economy/economy.sav&quot;) 
 
 #in
-#how to look the names of the variables
+#how to look up the names of certain variables
 df3&lt;- df2[, c(24,168,169,170,171,191,203,201)]</code></pre>
 <div id="cleaning-the-dataset" class="section level1">
 <h1>cleaning the dataset</h1>
-<pre class="r"><code>df3$bi_var &lt;- ifelse(df3$racecmb == 1, 1, 0)
+<pre class="r"><code>#Changing &quot;race&quot; variable to bi variable &quot;1&quot; for white, &quot;0&quot; not white
+df3$bi_var &lt;- ifelse(df3$racecmb == 1, 1, 0)
 
-#how to chance contiouse variable to a fator varibale
+#how to change a contiouse variable to a factor varibale
 df3$income&lt;-as.factor(df3$income)
 
 #how to label the levels of a factor variable
 levels(df3$income)&lt;-c(&quot;&lt;10&quot;,&quot;10-20&quot;,&quot;20-30&quot;,&quot;30-40&quot;,&quot;40-50&quot;,&quot;50-75&quot;,&quot;75-100&quot;,&quot;100-150&quot;,&quot;&gt;150&quot;, &quot;NA&quot;)
 
-#cleanin the sex varaiable
+#cleaning the sex varaiable
 df3$sex&lt;- as.factor(df3$sex)
 levels(df3$sex)&lt;- c(&quot;Male&quot;, &quot;Female&quot;)
 
@@ -116,7 +117,8 @@ levels(df3$race1_1) &lt;- c(&quot;White&quot;, &quot;Black&quot;, &quot;Asian&qu
 <h1>Bivariate analysis</h1>
 <pre class="r"><code>ggplot(df3, aes(x= income, fill=sex))+geom_bar(position = position_dodge())</code></pre>
 <p><img src="/post/2019-05-14-exploring-my-data_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
-<p>This is a bar graph that show us the amount of people by sex (female and male) per category of the level of income. There were more than 250 females that decided not to answer the question compared to about 150</p>
+<p>This is a bar graph that show us the amount of people by sex (female and male) per category of the level of income. There were more than 250 females that decided not to answer the question compared to about 150 male participants.</p>
+<p>The highest count for both male and female was under the $50 to $75 thousand bracket which according to the CNBC website aligns with the mean salary in US is about $56 thousand a year (<a href="https://www.cnbc.com/2017/08/24/how-much-americans-earn-at-every-age.html" class="uri">https://www.cnbc.com/2017/08/24/how-much-americans-earn-at-every-age.html</a>). The lowest count was in the over $150 thousand per year with about 100 count for male compared to about only 75 for female.</p>
 </div>
 
     </div>
