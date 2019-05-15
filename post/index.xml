@@ -17,8 +17,9 @@
       <pubDate>Tue, 14 May 2019 00:00:00 +0000</pubDate>
       
       <guid>/2019/05/14/advanced-models/</guid>
-      <description>cleaning the dataset  Jerry’s section model &amp;lt;- glm(bi_var ~ income, data = df3, family = &amp;quot;binomial&amp;quot;) set.seed(15) cv.error = cv.glm(df3, model, K=10)$delta[1] Bootstrap Methods
-## ## ORDINARY NONPARAMETRIC BOOTSTRAP ## ## ## Call: ## boot(data = df3, statistic = boot.fn, R = 1000) ## ## ## Bootstrap Statistics : ## original bias std. error ## t1* 0.2305237 0.0030803643 0.1313720 ## t2* 0.6350395 0.0003987870 0.1809877 ## t3* 0.5735806 -0.0003047392 0.</description>
+      <description>cleaning the dataset  Jerry’s section We will analize using the bootstrap method. With this method we are able to use a technique for resampling to estimate summary statistics as the mean income on our population by sampling our dataset with replacement.
+We chose to resample 1,000 times with replacement.
+model &amp;lt;- glm(bi_var ~ income, data = df3, family = &amp;quot;binomial&amp;quot;) set.seed(15) cv.error = cv.glm(df3, model, K=10)$delta[1] Bootstrap Methods</description>
     </item>
     
     <item>
