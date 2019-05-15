@@ -36,7 +36,7 @@
       <pubDate>Tue, 14 May 2019 00:00:00 +0000</pubDate>
       
       <guid>/2019/05/14/simple-testing/</guid>
-      <description>cleaning the dataset  Statistical testing library(corrplot) ## corrplot 0.84 loaded #test to see if there is a relationship between sex and income test&amp;lt;-chisq.test(df3$sex, df3$income) corrplot(test$residuals, is.corr = F) #test to see if there is a relationship between race and income test2&amp;lt;-chisq.test(df3$race1_1, df3$income) ## Warning in chisq.test(df3$race1_1, df3$income): Chi-squared approximation ## may be incorrect corrplot(test2$residuals, is.corr = F)  Eddie’s section model &amp;lt;- glm(bi_var ~ income, data = df3, family = &amp;quot;binomial&amp;quot;) pander::pander(summary(model))     Estimate Std.</description>
+      <description>cleaning the dataset  Statistical testing library(corrplot) ## corrplot 0.84 loaded #test to see if there is a relationship between #sex and income test&amp;lt;-chisq.test(table(df3$sex, df3$income)) test ## ## Pearson&amp;#39;s Chi-squared test ## ## data: table(df3$sex, df3$income) ## X-squared = 42.441, df = 9, p-value = 2.729e-06 table(df3$sex, df3$income) ## ## &amp;lt;10 10-20 20-30 30-40 40-50 50-75 75-100 100-150 &amp;gt;150 NA ## Male 99 138 132 135 100 211 149 126 98 138 ## Female 145 176 185 171 149 203 149 134 73 256 The p-value = .</description>
     </item>
     
     <item>

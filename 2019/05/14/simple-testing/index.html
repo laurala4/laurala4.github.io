@@ -62,7 +62,7 @@
 
   <article class="article">
     
-    <span class="article-duration">1 min read</span>
+    <span class="article-duration">2 min read</span>
     
 
     <h1 class="article-title">Simple testing</h1>
@@ -82,16 +82,39 @@
 <h1>Statistical testing</h1>
 <pre class="r"><code>library(corrplot)</code></pre>
 <pre><code>## corrplot 0.84 loaded</code></pre>
-<pre class="r"><code>#test to see if there is a relationship between sex and income
-test&lt;-chisq.test(df3$sex, df3$income)
-corrplot(test$residuals, is.corr = F)</code></pre>
-<p><img src="/post/2019-05-14-simple-testing_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
-<pre class="r"><code>#test to see if there is a relationship between race and income
+<pre class="r"><code>#test to see if there is a relationship between 
+#sex and income
+test&lt;-chisq.test(table(df3$sex, df3$income))
+test</code></pre>
+<pre><code>## 
+##  Pearson&#39;s Chi-squared test
+## 
+## data:  table(df3$sex, df3$income)
+## X-squared = 42.441, df = 9, p-value = 2.729e-06</code></pre>
+<pre class="r"><code>table(df3$sex, df3$income)</code></pre>
+<pre><code>##         
+##          &lt;10 10-20 20-30 30-40 40-50 50-75 75-100 100-150 &gt;150  NA
+##   Male    99   138   132   135   100   211    149     126   98 138
+##   Female 145   176   185   171   149   203    149     134   73 256</code></pre>
+<p>The p-value = .000002729 to test for independence gender and “income” we found we would reject independence and assumed that income is dependent on gender. With this we can assume a gender wage gap for workers in our study.</p>
+<pre class="r"><code>corrplot(test$residuals, is.corr = F)</code></pre>
+<p><img src="/post/2019-05-14-simple-testing_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<p>As predicted by our p-value, we can see there is a difference in earnings depending on gender.</p>
+<pre class="r"><code>#test to see if there is a relationship between 
+#race and income
 test2&lt;-chisq.test(df3$race1_1, df3$income)</code></pre>
 <pre><code>## Warning in chisq.test(df3$race1_1, df3$income): Chi-squared approximation
 ## may be incorrect</code></pre>
+<pre class="r"><code>test2</code></pre>
+<pre><code>## 
+##  Pearson&#39;s Chi-squared test
+## 
+## data:  df3$race1_1 and df3$income
+## X-squared = 195.77, df = 36, p-value &lt; 2.2e-16</code></pre>
+<p>In our qui-squared test for independence to find a relationship between race and income level, we found our p-value to be even smaller than before. We can conclude that there is a stronger dependence between race of a worker and their salary level than gender and salary.</p>
 <pre class="r"><code>corrplot(test2$residuals, is.corr = F)</code></pre>
-<p><img src="/post/2019-05-14-simple-testing_files/figure-html/unnamed-chunk-3-2.png" width="672" /></p>
+<p><img src="/post/2019-05-14-simple-testing_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<p>By graphing the relationship between race and income it is easy to see that White and Assian workers have the highest income. In contrast, Black workers by far earn the lowest income.</p>
 </div>
 <div id="eddies-section" class="section level1">
 <h1>Eddie’s section</h1>
@@ -204,6 +227,7 @@ pander::pander(summary(model))</code></pre>
 </tr>
 </tbody>
 </table>
+<p>This table separates the “standar error”, “z value” and “p-value” per income level. We found the lowest p-value on the most common income between $50 and $75 thousand per year.</p>
 </div>
 
     </div>
