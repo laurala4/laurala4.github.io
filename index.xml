@@ -46,7 +46,9 @@ model &amp;lt;- glm(bi_var ~ income, data = df3, family = &amp;quot;binomial&amp
       <pubDate>Tue, 14 May 2019 00:00:00 +0000</pubDate>
       
       <guid>/2019/05/14/visualizations/</guid>
-      <description> The importance of visualization  </description>
+      <description>The importance of visualization In the set of videos about “The Information Visualization Mantra” by University of Illiois we learned about Schneiderman’s Mantra. 1. Overview First 2. Zoom and Filter 3. Then Detail on Demand
+It has been said, “a picture is worth a thousand words”. Visualization is able to provide a better understanding of the data being reviewed, with a graph, color and motion.
+Today’s computers are able to process large amounts of data in a small amount of time.</description>
     </item>
     
     <item>
