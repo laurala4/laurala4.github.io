@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Hugo 0.54.0" />
+
+
+<title>Exploring my Data - A Hugo website</title>
+<meta property="og:title" content="Exploring my Data - A Hugo website">
+
+
+  <link href='/favicon.ico' rel='icon' type='image/x-icon'/>
+
+
+
+  
+
+
+
+
+
+
+
+
+<link href='//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css' rel='stylesheet' type='text/css' />
+
+
+
+<link rel="stylesheet" href="/css/fonts.css" media="all">
+<link rel="stylesheet" href="/css/main.css" media="all">
+
+
+
+  </head>
+  <body>
+    <div class="wrapper">
+      <header class="header">
+        <nav class="nav">
+  <a href="/" class="nav-logo">
+    <img src="/images/logo.png"
+         width="50"
+         height="50"
+         alt="Logo">
+  </a>
+
+  <ul class="nav-links">
+    
+    <li><a href="/about/">About</a></li>
+    
+    <li><a href="https://github.com/rstudio/blogdown">GitHub</a></li>
+    
+    <li><a href="https://twitter.com/rstudio">Twitter</a></li>
+    
+  </ul>
+</nav>
+
+      </header>
+
+
+<main class="content" role="main">
+
+  <article class="article">
+    
+    <span class="article-duration">2 min read</span>
+    
+
+    <h1 class="article-title">Exploring my Data</h1>
+
+    
+    <span class="article-date">2019-05-14</span>
+    
+
+    <div class="article-content">
+      
+
+
+<pre class="r"><code>#How to read in a .sav file using the library haven
+df2&lt;-read_sav(&quot;~/Desktop/Lizz/Spring19/CSCI498/May10Economy/Economy/economy.sav&quot;) 
+
+#in
+#how to look the names of the variables
+df3&lt;- df2[, c(24,168,169,170,171,191,203,201)]</code></pre>
+<div id="cleaning-the-dataset" class="section level1">
+<h1>cleaning the dataset</h1>
+<pre class="r"><code>df3$bi_var &lt;- ifelse(df3$racecmb == 1, 1, 0)
+
+#how to chance contiouse variable to a fator varibale
+df3$income&lt;-as.factor(df3$income)
+
+#how to label the levels of a factor variable
+levels(df3$income)&lt;-c(&quot;&lt;10&quot;,&quot;10-20&quot;,&quot;20-30&quot;,&quot;30-40&quot;,&quot;40-50&quot;,&quot;50-75&quot;,&quot;75-100&quot;,&quot;100-150&quot;,&quot;&gt;150&quot;, &quot;NA&quot;)
+
+#cleanin the sex varaiable
+df3$sex&lt;- as.factor(df3$sex)
+levels(df3$sex)&lt;- c(&quot;Male&quot;, &quot;Female&quot;)
+
+
+#cleaning race
+df3$race1_1 &lt;- as.factor(df3$race1_1)
+levels(df3$race1_1) &lt;- c(&quot;White&quot;, &quot;Black&quot;, &quot;Asian&quot;, &quot;Other&quot;, &quot;NA&quot;)</code></pre>
+<p>Cleaning data: changed “income”, “racecmb”, “sex” variables from an integer to a factor. Then labeled the factors based off codebook to create a graph that describes the data accurately.</p>
+<p>Created a new bivariate variable from the race variable where 1 represented “white” and 0 represented “other”.</p>
+</div>
+<div id="univariate-analysis" class="section level1">
+<h1>Univariate analysis</h1>
+<pre class="r"><code>ggplot(df3, aes(x=income))+geom_bar(fill=&quot;darkorchid1&quot;)+xlab(&quot;Income per thousand&quot;)+geom_text(stat = &#39;count&#39;, aes(label =..count..), vjust=-.2)</code></pre>
+<p><img src="/post/2019-05-14-exploring-my-data_files/figure-html/unnamed-chunk-3-1.png" width="672" /> This bar chart represents the amount of people that answered the question about the level of income per year that they earn in thousands of dollars. The last bar “NA” represents the number of people that declined to answer the question.</p>
+<p>From the 2,967 people in the survey about 400 denied to answer the question. The highest count was for people earning between $50,000 and $70,000 dollars a year. The lowest count was the bar that respresents the people earning over $150,000 dollars a year with a count of about 175.</p>
+<pre class="r"><code>ggplot(df3, aes(x=income))+geom_bar(aes(y=..count../sum(..count..)),fill=&quot;deeppink4&quot;)+xlab(&quot;Income per thousand&quot;)</code></pre>
+<p><img src="/post/2019-05-14-exploring-my-data_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<p>This bar chart represents the percentages of people in each category of income in thousands of dollars per year. The last bar “NA” represents the percentage of people that declined to answer the question. We can see that more than 13% of people participating (2,967) in the survey decided not to answer.</p>
+<p>The highest percentage of people were those earning between $50,000 and $70,000 dollars a year. The lowest percentage was the bar that respresents the people earning over $150,000 dollars a year with a percentage less than 6%.</p>
+</div>
+<div id="bivariate-analysis" class="section level1">
+<h1>Bivariate analysis</h1>
+<p>This is a bar graph that show us the amount of people by sex (female and male) per category of the level of income. There were more than 250 females that decided not to answer the question compared to about 150</p>
+<pre class="r"><code>ggplot(df3, aes(x= income, fill=sex))+geom_bar(position = position_dodge())</code></pre>
+<p><img src="/post/2019-05-14-exploring-my-data_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+</div>
+
+    </div>
+  </article>
+
+  
+
+
+</main>
+
+      <footer class="footer">
+        <ul class="footer-links">
+          <li>
+            <a href="/index.xml" type="application/rss+xml" target="_blank">RSS feed</a>
+          </li>
+          <li>
+            <a href="https://gohugo.io/" class="footer-links-kudos">Made with <img src="/images/hugo-logo.png" alt="Img link to Hugo website" width="22" height="22"></a>
+          </li>
+        </ul>
+      </footer>
+
+    </div>
+    
+
+
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+
+
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/r.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/yaml.min.js"></script>
+<script>hljs.configure({languages: []}); hljs.initHighlightingOnLoad();</script>
+
+
+
+    
+<script src="/js/math-code.js"></script>
+<script async src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+
+    
+  </body>
+</html>
+

@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Hugo 0.54.0" />
+
+
+<title>Simple testing - A Hugo website</title>
+<meta property="og:title" content="Simple testing - A Hugo website">
+
+
+  <link href='/favicon.ico' rel='icon' type='image/x-icon'/>
+
+
+
+  
+
+
+
+
+
+
+
+
+<link href='//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css' rel='stylesheet' type='text/css' />
+
+
+
+<link rel="stylesheet" href="/css/fonts.css" media="all">
+<link rel="stylesheet" href="/css/main.css" media="all">
+
+
+
+  </head>
+  <body>
+    <div class="wrapper">
+      <header class="header">
+        <nav class="nav">
+  <a href="/" class="nav-logo">
+    <img src="/images/logo.png"
+         width="50"
+         height="50"
+         alt="Logo">
+  </a>
+
+  <ul class="nav-links">
+    
+    <li><a href="/about/">About</a></li>
+    
+    <li><a href="https://github.com/rstudio/blogdown">GitHub</a></li>
+    
+    <li><a href="https://twitter.com/rstudio">Twitter</a></li>
+    
+  </ul>
+</nav>
+
+      </header>
+
+
+<main class="content" role="main">
+
+  <article class="article">
+    
+    <span class="article-duration">1 min read</span>
+    
+
+    <h1 class="article-title">Simple testing</h1>
+
+    
+    <span class="article-date">2019-05-14</span>
+    
+
+    <div class="article-content">
+      
+
+
+<div id="cleaning-the-dataset" class="section level1">
+<h1>cleaning the dataset</h1>
+</div>
+<div id="statistical-testing" class="section level1">
+<h1>Statistical testing</h1>
+<pre class="r"><code>library(corrplot)</code></pre>
+<pre><code>## corrplot 0.84 loaded</code></pre>
+<pre class="r"><code>#test to see if there is a relationship between sex and income
+test&lt;-chisq.test(df3$sex, df3$income)
+corrplot(test$residuals, is.corr = F)</code></pre>
+<p><img src="/post/2019-05-14-simple-testing_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<pre class="r"><code>#test to see if there is a relationship between race and income
+test2&lt;-chisq.test(df3$race1_1, df3$income)</code></pre>
+<pre><code>## Warning in chisq.test(df3$race1_1, df3$income): Chi-squared approximation
+## may be incorrect</code></pre>
+<pre class="r"><code>corrplot(test2$residuals, is.corr = F)</code></pre>
+<p><img src="/post/2019-05-14-simple-testing_files/figure-html/unnamed-chunk-3-2.png" width="672" /></p>
+</div>
+<div id="eddies-section" class="section level1">
+<h1>Eddie’s section</h1>
+<pre class="r"><code>model &lt;- glm(bi_var ~ income, data = df3, family = &quot;binomial&quot;)
+pander::pander(summary(model))</code></pre>
+<table style="width:90%;">
+<colgroup>
+<col width="27%" />
+<col width="15%" />
+<col width="18%" />
+<col width="13%" />
+<col width="15%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center"> </th>
+<th align="center">Estimate</th>
+<th align="center">Std. Error</th>
+<th align="center">z value</th>
+<th align="center">Pr(&gt;|z|)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center"><strong>(Intercept)</strong></td>
+<td align="center">0.2305</td>
+<td align="center">0.1289</td>
+<td align="center">1.789</td>
+<td align="center">0.07369</td>
+</tr>
+<tr class="even">
+<td align="center"><strong>income10-20</strong></td>
+<td align="center">0.635</td>
+<td align="center">0.1786</td>
+<td align="center">3.556</td>
+<td align="center">0.0003764</td>
+</tr>
+<tr class="odd">
+<td align="center"><strong>income20-30</strong></td>
+<td align="center">0.5736</td>
+<td align="center">0.1772</td>
+<td align="center">3.238</td>
+<td align="center">0.001205</td>
+</tr>
+<tr class="even">
+<td align="center"><strong>income30-40</strong></td>
+<td align="center">1.08</td>
+<td align="center">0.1901</td>
+<td align="center">5.68</td>
+<td align="center">1.347e-08</td>
+</tr>
+<tr class="odd">
+<td align="center"><strong>income40-50</strong></td>
+<td align="center">0.8735</td>
+<td align="center">0.1952</td>
+<td align="center">4.475</td>
+<td align="center">7.624e-06</td>
+</tr>
+<tr class="even">
+<td align="center"><strong>income50-75</strong></td>
+<td align="center">1.362</td>
+<td align="center">0.1839</td>
+<td align="center">7.406</td>
+<td align="center">1.304e-13</td>
+</tr>
+<tr class="odd">
+<td align="center"><strong>income75-100</strong></td>
+<td align="center">1.347</td>
+<td align="center">0.2007</td>
+<td align="center">6.713</td>
+<td align="center">1.911e-11</td>
+</tr>
+<tr class="even">
+<td align="center"><strong>income100-150</strong></td>
+<td align="center">1.361</td>
+<td align="center">0.2097</td>
+<td align="center">6.489</td>
+<td align="center">8.668e-11</td>
+</tr>
+<tr class="odd">
+<td align="center"><strong>income&gt;150</strong></td>
+<td align="center">1.163</td>
+<td align="center">0.2309</td>
+<td align="center">5.037</td>
+<td align="center">4.733e-07</td>
+</tr>
+<tr class="even">
+<td align="center"><strong>incomeNA</strong></td>
+<td align="center">0.6804</td>
+<td align="center">0.1704</td>
+<td align="center">3.994</td>
+<td align="center">6.489e-05</td>
+</tr>
+</tbody>
+</table>
+<p>(Dispersion parameter for binomial family taken to be 1 )</p>
+<table style="width:67%;">
+<colgroup>
+<col width="29%" />
+<col width="37%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td align="center">Null deviance:</td>
+<td align="center">3329 on 2966 degrees of freedom</td>
+</tr>
+<tr class="even">
+<td align="center">Residual deviance:</td>
+<td align="center">3233 on 2957 degrees of freedom</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+    </div>
+  </article>
+
+  
+
+
+</main>
+
+      <footer class="footer">
+        <ul class="footer-links">
+          <li>
+            <a href="/index.xml" type="application/rss+xml" target="_blank">RSS feed</a>
+          </li>
+          <li>
+            <a href="https://gohugo.io/" class="footer-links-kudos">Made with <img src="/images/hugo-logo.png" alt="Img link to Hugo website" width="22" height="22"></a>
+          </li>
+        </ul>
+      </footer>
+
+    </div>
+    
+
+
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+
+
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/r.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/yaml.min.js"></script>
+<script>hljs.configure({languages: []}); hljs.initHighlightingOnLoad();</script>
+
+
+
+    
+<script src="/js/math-code.js"></script>
+<script async src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+
+    
+  </body>
+</html>
+

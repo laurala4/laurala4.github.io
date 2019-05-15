@@ -6,10 +6,47 @@
     <description>Recent content in Posts on A Hugo website</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 12 Feb 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 14 May 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Advanced models</title>
+      <link>/2019/05/14/advanced-models/</link>
+      <pubDate>Tue, 14 May 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/2019/05/14/advanced-models/</guid>
+      <description>cleaning the dataset  Jerry’s section model &amp;lt;- glm(bi_var ~ income, data = df3, family = &amp;quot;binomial&amp;quot;) set.seed(15) cv.error = cv.glm(df3, model, K=10)$delta[1] Bootstrap Methods
+## ## ORDINARY NONPARAMETRIC BOOTSTRAP ## ## ## Call: ## boot(data = df3, statistic = boot.fn, R = 1000) ## ## ## Bootstrap Statistics : ## original bias std. error ## t1* 0.2305237 0.0030803643 0.1313720 ## t2* 0.6350395 0.0003987870 0.1809877 ## t3* 0.5735806 -0.0003047392 0.</description>
+    </item>
+    
+    <item>
+      <title>Exploring my Data</title>
+      <link>/2019/05/14/exploring-my-data/</link>
+      <pubDate>Tue, 14 May 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/2019/05/14/exploring-my-data/</guid>
+      <description>#How to read in a .sav file using the library haven df2&amp;lt;-read_sav(&amp;quot;~/Desktop/Lizz/Spring19/CSCI498/May10Economy/Economy/economy.sav&amp;quot;) #in #how to look the names of the variables df3&amp;lt;- df2[, c(24,168,169,170,171,191,203,201)] cleaning the dataset df3$bi_var &amp;lt;- ifelse(df3$racecmb == 1, 1, 0) #how to chance contiouse variable to a fator varibale df3$income&amp;lt;-as.factor(df3$income) #how to label the levels of a factor variable levels(df3$income)&amp;lt;-c(&amp;quot;&amp;lt;10&amp;quot;,&amp;quot;10-20&amp;quot;,&amp;quot;20-30&amp;quot;,&amp;quot;30-40&amp;quot;,&amp;quot;40-50&amp;quot;,&amp;quot;50-75&amp;quot;,&amp;quot;75-100&amp;quot;,&amp;quot;100-150&amp;quot;,&amp;quot;&amp;gt;150&amp;quot;, &amp;quot;NA&amp;quot;) #cleanin the sex varaiable df3$sex&amp;lt;- as.factor(df3$sex) levels(df3$sex)&amp;lt;- c(&amp;quot;Male&amp;quot;, &amp;quot;Female&amp;quot;) #cleaning race df3$race1_1 &amp;lt;- as.factor(df3$race1_1) levels(df3$race1_1) &amp;lt;- c(&amp;quot;White&amp;quot;, &amp;quot;Black&amp;quot;, &amp;quot;Asian&amp;quot;, &amp;quot;Other&amp;quot;, &amp;quot;NA&amp;quot;) Cleaning data: changed “income”, “racecmb”, “sex” variables from an integer to a factor.</description>
+    </item>
+    
+    <item>
+      <title>Simple testing</title>
+      <link>/2019/05/14/simple-testing/</link>
+      <pubDate>Tue, 14 May 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/2019/05/14/simple-testing/</guid>
+      <description>cleaning the dataset  Statistical testing library(corrplot) ## corrplot 0.84 loaded #test to see if there is a relationship between sex and income test&amp;lt;-chisq.test(df3$sex, df3$income) corrplot(test$residuals, is.corr = F) #test to see if there is a relationship between race and income test2&amp;lt;-chisq.test(df3$race1_1, df3$income) ## Warning in chisq.test(df3$race1_1, df3$income): Chi-squared approximation ## may be incorrect corrplot(test2$residuals, is.corr = F)  Eddie’s section model &amp;lt;- glm(bi_var ~ income, data = df3, family = &amp;quot;binomial&amp;quot;) pander::pander(summary(model))     Estimate Std.</description>
+    </item>
+    
+    <item>
+      <title>Visualizations</title>
+      <link>/2019/05/14/visualizations/</link>
+      <pubDate>Tue, 14 May 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/2019/05/14/visualizations/</guid>
+      <description> The importance of visualization  </description>
+    </item>
     
     <item>
       <title>First Post</title>
